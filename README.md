@@ -23,5 +23,6 @@ Built with [Next.js](https://nextjs.org/), it leverages the power of open source
 
 Now, open the application in the web browser by navigating to [localhost:3000](http://localhost:3000/).
 
+## [Demo video](https://www.dropbox.com/scl/fi/qr1gcweidh4p45tbkgthy/demo.mov?rlkey=m9ghqq40flzav47pkcniw1d27&st=60909eip&dl=0)
 
 
