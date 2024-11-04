@@ -1,4 +1,4 @@
-import { parseInputToObjects, filterSections, insertDashes, titleCase, normalizeHeadings, makeBlogURL } from "@/utils/utils";
+import { parseInputToObjects, filterSections, insertDashes, titleCase, normalizeHeadings, makeBlogURL, getCurrentDateTime } from "@/utils/utils";
 export const GenerateTOCFormat = async (formData,product,data)=>{
 
     let filedata = await normalizeHeadings(data.toString());
@@ -42,8 +42,7 @@ ${Overview.content}
 The following points will be covered in this article:
 
 - [Library Installation](#${await insertDashes("Library Installation")})
-- [Code Snippet with a Step-by-Step Guide](#${await insertDashes("Code Snippet with a Step-by-Step Guide")})
-${formData.get("onlineTool") ? `- [Try Online](#${await insertDashes("Try Online")})` : ''}
+- [Code Snippet with a Step-by-Step Guide](#${await insertDashes("Code Snippet with a Step-by-Step Guide")}) ${formData.get("onlineTool") ? `\n- [Try Online](#${await insertDashes("Try Online")})` : ''}
 - [Public Resources](#${await insertDashes("Public Resources")})
 
 ## Library Installation {#${await insertDashes("Library Installation")}}
@@ -56,15 +55,13 @@ ${steps.content}
 
 ## Get a Free License
 
-${license.content}
+${license.content} ${formData.get("onlineTool") ? `\n\n## Try Online {#${await insertDashes("Try Online")}}\n\n${onlineTool.content}` : ''}
 
-${formData.get("onlineTool") ? `## Try Online {#${await insertDashes("Try Online")}}\n${onlineTool.content}` : ''}
-
-## Conclusion
+## Final Thoughts
 
 ${conclusion.content}
 
-## Public Resources {#${await insertDashes("Public Resources")}}
+## Useful Resources {#${await insertDashes("Public Resources")}}
 
 ${resources.content}
 
@@ -73,7 +70,7 @@ ${resources.content}
 - [API reference](${product.APIReferenceURL})
 - [How-to guides and articles](${product.BlogsURL})
 
-## Explore
+## Discover More
 
 ${seeAlso.content}
 `

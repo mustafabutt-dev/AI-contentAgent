@@ -50,9 +50,7 @@ ${steps.content}
 
 ## Get a Free License
 
-${license.content}
-
-${formData.get("onlineTool") ? `## Try Online\n${onlineTool.content}` : ''}
+${license.content} ${formData.get("onlineTool") ? `\n\n## Try Online\n\n${onlineTool.content}` : ''}
 
 ## Conclusion
 
