@@ -1,8 +1,8 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/generate/page": "app/generate/page.js",
-  "/page": "app/page.js",
-  "/api/download/route": "app/api/download/route.js",
   "/download/page": "app/download/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/download/route": "app/api/download/route.js",
+  "/page": "app/page.js",
+  "/generate/page": "app/generate/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js"
 }
