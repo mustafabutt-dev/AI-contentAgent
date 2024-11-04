@@ -43,7 +43,7 @@ The following points will be covered in this article:
 
 - [Library Installation](#${await insertDashes("Library Installation")})
 - [Code Snippet with a Step-by-Step Guide](#${await insertDashes("Code Snippet with a Step-by-Step Guide")}) ${formData.get("onlineTool") ? `\n- [Try Online](#${await insertDashes("Try Online")})` : ''}
-- [Public Resources](#${await insertDashes("Public Resources")})
+- [Useful Resources](#${await insertDashes("Useful Resources")})
 
 ## Library Installation {#${await insertDashes("Library Installation")}}
 

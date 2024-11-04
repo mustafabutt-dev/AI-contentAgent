@@ -118,7 +118,7 @@ The following points will be covered in this article:
 - [Library Installation](#${await (0,l.insertDashes)("Library Installation")})
 - [Code Snippet with a Step-by-Step Guide](#${await (0,l.insertDashes)("Code Snippet with a Step-by-Step Guide")}) ${e.get("onlineTool")?`
 - [Try Online](#${await (0,l.insertDashes)("Try Online")})`:""}
-- [Public Resources](#${await (0,l.insertDashes)("Public Resources")})
+- [Useful Resources](#${await (0,l.insertDashes)("Useful Resources")})
 
 ## Library Installation {#${await (0,l.insertDashes)("Library Installation")}}
 
