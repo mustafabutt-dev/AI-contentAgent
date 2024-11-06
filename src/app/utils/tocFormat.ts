@@ -17,8 +17,7 @@ export const GenerateTOCFormat = async (formData,product,data)=>{
     const onlineTool = await filterSections(output, "Try Online");
     const resources = await filterSections(output, "Public Resources");
     const seeAlso = await filterSections(output, "Explore");
-    const date = new Date();
-    const formattedDate = date.toUTCString();
+    const formattedDate = await getDate();
     const tags = await formData.get("secondaryKeywords").split(',').map(item => item.trim())
 
     const content = `---

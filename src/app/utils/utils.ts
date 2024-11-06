@@ -95,3 +95,20 @@ export const checkIfExists = async (filePath)=> {
      return false
     }
   }
+
+export const getDate = async ()=> {
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    const now = new Date();
+    const dayName = days[now.getUTCDay()];
+    const day = now.getUTCDate().toString().padStart(2, '0');
+    const monthName = months[now.getUTCMonth()];
+    const year = now.getUTCFullYear();
+    const hours = now.getUTCHours().toString().padStart(2, '0');
+    const minutes = now.getUTCMinutes().toString().padStart(2, '0');
+    const seconds = now.getUTCSeconds().toString().padStart(2, '0');
+
+    return `${dayName}, ${day} ${monthName} ${year} ${hours}:${minutes}:${seconds} +0000`;
+}
+  
