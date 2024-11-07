@@ -60,7 +60,7 @@ ${license.content} ${formData.get("onlineTool") ? `\n\n## Try Online {#${await i
 
 ${conclusion.content}
 
-## Useful Resources {#${await insertDashes("Public Resources")}}
+## Useful Resources {#${await insertDashes("Useful Resources")}}
 
 ${resources.content}
 
