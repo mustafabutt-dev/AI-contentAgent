@@ -33,6 +33,7 @@ export async function InvokeOpenAI(formData: FormData) {
   console.log(text)
   console.log("****************************** end")
 
+
   switch (formData.get('format')) {
     case 'Free flowing':
       fileData = await GenerateFreeFlowingFormat(formData,product,text)
@@ -43,9 +44,8 @@ export async function InvokeOpenAI(formData: FormData) {
     default:
       fileData = await GenerateFreeFlowingFormat(formData,product,text)
   }
-
+  
   await markdownFileGenertaor(fileData,formData.get("uuid"), formData.get("title"));
   console.log(`all done`)
-
   redirect('/download')
 }

@@ -1,4 +1,4 @@
-import { parseInputToObjects, filterSections, insertDashes, titleCase, normalizeHeadings, makeBlogURL, getCurrentDateTime } from "@/utils/utils";
+import { parseInputToObjects, filterSections, insertDashes, titleCase, normalizeHeadings, makeBlogURL, getDate } from "@/utils/utils";
 export const GenerateTOCFormat = async (formData,product,data)=>{
 
     let filedata = await normalizeHeadings(data.toString());
