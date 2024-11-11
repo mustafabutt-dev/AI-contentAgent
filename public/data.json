@@ -76,7 +76,7 @@
   "FreeAppsURL" : "https://products.aspose.app/cad",
   "ForumsURL" : "https://forum.aspose.com/c/cad/",
   "InstallCommand" : "pip install aspose-cad ",
-  "urlPrefix" : "python",
+  "urlPrefix" : "cad",
   "license":"https://purchase.aspose.com/temporary-license/"
 }
 ]
