@@ -43,15 +43,18 @@ export const insertDashes = async (input:string)=>{
     .replace(/\s+/g, '-'); 
 }
 
-export const titleCase = async (input:string)=>{
-
+export const titleCase = async (input: string) => {
+    const skipWords = ['in', 'the', 'for', 'and', 'of', 'on', 'at', 'to', 'with', 'using'];
     return input
-        .toLowerCase()                              
-        .replace(/\b\w+/g, word =>                     
-            word.charAt(0).toUpperCase() + word.slice(1)
-        )
-        .replace(/Csharp/i, 'C#');   
-}
+        .toLowerCase()
+        .replace(/\b\w+/g, (word, index) => {
+            if (index === 0 || !skipWords.includes(word)) {
+                return word.charAt(0).toUpperCase() + word.slice(1);
+            }
+            return word;
+        })
+        .replace(/Csharp/i, 'C#');
+};
 
 export const normalizeHeadings = async (data)=>{
 
