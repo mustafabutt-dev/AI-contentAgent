@@ -114,4 +114,12 @@ export const getDate = async ()=> {
 
     return `${dayName}, ${day} ${monthName} ${year} ${hours}:${minutes}:${seconds} +0000`;
 }
+
+export const processRequest = async (name) => {
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+        console.log("start")
+        await delay(1000); // Delay for 10 seconds
+        console.log("end")
+        return `# ${name}\nThis file is for language: ${name}`;
+};
   
