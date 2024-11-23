@@ -24,6 +24,6 @@ Built with [Next.js](https://nextjs.org/), it leverages the power of open source
 Now, open the application in the web browser by navigating to [localhost:3000](http://localhost:3000/).
 
 ## [Blog Post Creation - Demo video](https://www.dropbox.com/scl/fi/qr1gcweidh4p45tbkgthy/demo.mov?rlkey=m9ghqq40flzav47pkcniw1d27&st=60909eip&dl=0)
-## [Post Translation - Demo video](https://www.dropbox.com/scl/fi/v3yoavkk2741hikrxr0ae/WhatsApp-Video-2024-11-22-at-2.29.54-AM.mp4?rlkey=fpvsjvaiy5w1wh6rgrep0i1ta&st=jshtgjou&dl=0)
+## [Post Translation - Demo video](https://www.dropbox.com/scl/fi/319pdbky49z70zsxg9zqe/translation.mp4?rlkey=oc5m5zw7npwcv33ktmruxrpa6&st=by3m4l0y&dl=0)
 
 
