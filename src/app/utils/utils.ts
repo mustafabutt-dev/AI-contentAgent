@@ -19,7 +19,8 @@ export const parseInputToObjects = async (input:string)=>{
 }
 
 export const filterSections = async (output:object,input:string)=>{
-    return output.find(item => item.heading === input);
+    let data = output.find(item => item.heading === input);
+    return data.replace(":","");
 }
 
 export const getDirectoryName = async (title:string)=>{
@@ -122,4 +123,3 @@ export const processRequest = async (name) => {
         console.log("end")
         return `# ${name}\nThis file is for language: ${name}`;
 };
-  
