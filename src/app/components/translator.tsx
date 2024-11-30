@@ -144,7 +144,7 @@ const Translator = () => {
                 )}
                 
                 {data}
-                {progress&& ( <div className="w-3/4 bg-gray-300 rounded-full h-6 overflow-hidden shadow-md">
+                {progress && ( <div className="w-3/4 bg-gray-300 rounded-full h-6 overflow-hidden shadow-md">
                     {/* Progress Indicator */}
                     <div
                     className="bg-blue-500 h-full text-xs font-medium text-white text-center flex items-center justify-center transition-all duration-300"

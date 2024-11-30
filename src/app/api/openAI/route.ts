@@ -5,7 +5,7 @@ import path from 'path';
 import { redirect } from "next/navigation";
 import { checkIfExists, processRequest } from "@/app/utils/utils";
 import eventBus from '@/app/components/eventBus';
-import { translateData } from '@/app/utils/openAIService';
+import { OpenAIService } from '@/app/utils/openAIService';
 import { EventEmitter } from 'events';
 
 if (!globalThis.eventEmitter) {
@@ -36,7 +36,6 @@ export async function GET(request) {
 
 export async function POST(request: Request) {
     const sourceMD = await request.text()
-    console.log(sourceMD);
 
     const { readable, writable } = new TransformStream();
     const writer = writable.getWriter();
@@ -72,16 +71,25 @@ export async function POST(request: Request) {
 
     for (const { code, name } of languages) {
         const fileName = `${process.cwd()}/public/blog-posts/${request.headers.get('uuid')}/index.${code}.md`;
-
+        const prompt = `Translate the following MD file to the ${name} locale and provide the result in the exact MD format.\n
+        Do not translate date, url, tags, and categories properties in front matter.\n
+        Do not translate \'figure short code\'. Only translate title, seoTitle, author, description, and summary properties.\n
+        Add locale to the beginning of the url property.  In \'See Also\' section, add locale to the urls after https://blog.aspose.com/:\n\n${sourceMD}`;
         // const content = await processRequest(name);
        
         try {
             console.log("emietting ....")    
             let progress = ((i + 1) / languages.length) * 100;
-            let message = `Translating in ${name}, Progress: ${progress.toFixed(2)}%`;     
+            let message = `Translating in ${name}, Progress: ${progress.toFixed(2)}%`;   
             globalThis.eventEmitter.emit('update', message);
             i++;
-            const content = await translateData(sourceMD,name);
+            const content = await OpenAIService({
+                model: 'gpt-4o',
+                maxTokens: Number('1500'),
+                temperature: Number('0.3'),
+                maxRetries: 5,
+                prompt: prompt,
+            });
             const clearData = content.replace(/^\s*```markdown\s*|\s*```$/g, '');
             await fs.writeFile(fileName, clearData);
             console.log(`File created: ${fileName}`);

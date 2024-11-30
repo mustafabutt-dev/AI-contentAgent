@@ -19,8 +19,13 @@ export const parseInputToObjects = async (input:string)=>{
 }
 
 export const filterSections = async (output:object,input:string)=>{
+   
     let data = output.find(item => item.heading === input);
-    return data.replace(":","");
+    if(input == "Meta Title" || input == "Meta Description" || input == "Short Summary"){
+        data.content = data.content.replace(":","");
+        return data
+    }
+    return data
 }
 
 export const getDirectoryName = async (title:string)=>{
@@ -46,6 +51,8 @@ export const insertDashes = async (input:string)=>{
 
 export const titleCase = async (input: string) => {
     const skipWords = ['in', 'the', 'for', 'and', 'of', 'on', 'at', 'to', 'with', 'using'];
+    input = input.replace(":","");
+   
     return input
         .toLowerCase()
         .replace(/\b\w+/g, (word, index) => {

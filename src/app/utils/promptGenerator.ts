@@ -19,7 +19,7 @@ export const promptGenerator = async (formData:FormData, product)=>{
     6. Meta Description:
     Write a concise and engaging meta description for a blog post titled \'${formData.get("primaryKeyword")}\'. Summarize the content of the blog post, include the primary keyword \'${formData.get("primaryKeyword")}\', and ensure it does not exceed 160 characters. Encourage users to click through to learn more.\n
     7. Short Summary:
-    Write a short upto 160 characters long, engaging summary for the blog post \'${formData.get("primaryKeyword")}\'. Clearly state what readers will learn, including the how-to guide with \'[${product.value}](${product.ProductURL})\' code examples. Encourage users to click through to learn more.\n
+    Write a short upto 160 characters long, engaging summary for the blog post \'${formData.get("primaryKeyword")}\'. Clearly state what readers will learn, including the how-to guide with \'${product.value}\' code examples. Encourage users to click through to learn more.\n
     8. Tags:
     Generate a comma-separated list of SEO-related tags for the keyword \'${formData.get("primaryKeyword")}\'. The tags should be relevant to the topic, reflect common search terms, must contain \'${formData.get("secondaryKeywords")}\' keywords and be optimized for search engines. Include a mix of short and long-tail keywords to target both specific niches and broader audiences. Aim for 4-6 high-quality tags that will improve search visibility.\n
     9. Get a Free License
