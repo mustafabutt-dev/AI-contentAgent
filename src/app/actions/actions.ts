@@ -10,6 +10,7 @@ import path from 'path';
 import { NextRequest, NextResponse, userAgent } from 'next/server'
 import data from '../../../public/data.json'
 import { OpenAIService } from '@/utils/openAIService';
+import { LlamaService } from '@/utils/LlamaService';
 
 export async function InvokeOpenAI(formData: FormData) {
 
@@ -23,15 +24,19 @@ export async function InvokeOpenAI(formData: FormData) {
   console.log("****************************** form data start")
   console.log(formData)
   console.log("****************************** form data end")
-  let fileData = '';
+  let fileData = ''; let text='';
 
-  const text  = await OpenAIService({
-    model: formData.get('model'),
-    maxTokens: Number(formData.get('tokenLimit')),
-    temperature: Number(formData.get('temprature')),
-    maxRetries: 5,
-    prompt: prompt,
-  });
+  if(formData.get('model') == "Llama")
+    text = await LlamaService(prompt)
+  else {
+    text  = await OpenAIService({
+      model: formData.get('model'),
+      maxTokens: Number(formData.get('tokenLimit')),
+      temperature: Number(formData.get('temprature')),
+      maxRetries: 5,
+      prompt: prompt,
+    });
+  }
 
   switch (formData.get('format')) {
     case 'Free flowing':

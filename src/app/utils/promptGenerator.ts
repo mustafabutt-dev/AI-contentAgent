@@ -29,7 +29,7 @@ export const promptGenerator = async (formData:FormData, product)=>{
     11. Public Resources
     Write a brief statement emphasizing the value of additional resources, such as documentation or community forums. Mention that these resources can help readers further enhance their understanding or skills beyond the blog content.\n
     12. Explore
-    Please get any two latest ${product.ProgrammingLanguage}-based titles of the articles with URLs from ${product.BlogsURL}, write in the format [title](url).\n
+    Please get any two latest ${product.ProgrammingLanguage}-based titles of the articles with URLs from ${product.BlogsURL}, write in the format [title](url) and return in bullets.\n
     ${formData.get("additionalInstructions")}
 `
     return prompt;

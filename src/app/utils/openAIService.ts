@@ -1,8 +1,8 @@
 
 'use server'
  
-import { openai } from '@ai-sdk/openai';
-import { streamText, convertToCoreMessages,generateText } from 'ai';
+import { openai  } from '@ai-sdk/openai';
+import { generateText } from 'ai';
 
 export const OpenAIService = async (modelInput) => {
     const { text } = await generateText({

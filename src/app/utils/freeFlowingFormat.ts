@@ -1,6 +1,6 @@
 import { parseInputToObjects, filterSections, insertDashes, titleCase, normalizeHeadings, makeBlogURL, getDate } from "@/utils/utils";
 export const GenerateFreeFlowingFormat = async (formData,product,data)=>{
-
+   
     let filedata = await normalizeHeadings(data.toString());
    
     const output = await parseInputToObjects(filedata);
