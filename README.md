@@ -17,7 +17,7 @@ Built with [Next.js](https://nextjs.org/), it leverages the power of open source
 
 - Clone this repo.
 - Go into the root directory
-- Put your OpenAI key in the `.env.local` file.
+- Put your OpenAI key and GROQ_API_KEY in the `.env.local` file.
 - Run `npm install`
 - Run `npm run start`
 
