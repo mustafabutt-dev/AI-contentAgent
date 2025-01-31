@@ -38,7 +38,7 @@ const BlogPostGenerator = () => {
     { value: 'gpt-4o', label: 'gpt-4o' },
     { value: 'gpt-4o-mini', label: 'gpt-4o-mini' },
     { value: 'gpt-4', label: 'gpt-4' },
-    { value: 'Llama', label: 'Llama' }
+    { value: 'Mixtral', label: 'Mixtral' }
     // { value: 'gpt-4-turbo', label: 'gpt-4-turbo' },
     
   ];
@@ -84,11 +84,11 @@ const BlogPostGenerator = () => {
 
   return (
     <>
-      <Link href="/">
+      {/* <Link href="/">
         <button className="float-left text-white font-bold py-1 px-1 rounded-full shadow-md bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 bg-[length:400%_400%] animate-spin-slow">
           <span class="mr-2">&#8592; Back</span>
         </button>
-      </Link>
+      </Link> */}
 
       <div className="flex min-h-screen justify-center items-center">
         
@@ -284,7 +284,7 @@ const BlogPostGenerator = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              className="w-full bg-black text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50"
               onClick={handleClick}
             >
               Submit

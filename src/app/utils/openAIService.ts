@@ -15,5 +15,5 @@ export const OpenAIService = async (modelInput) => {
     console.log("****************************** content start ")
     console.log(text)
     console.log("****************************** content end")
-    return text;
+    return text.replace(/^[\s\S]*?\n---/, '---');
 }

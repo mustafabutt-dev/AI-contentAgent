@@ -30,6 +30,8 @@ export const promptGenerator = async (formData:FormData, product)=>{
     Write a brief statement emphasizing the value of additional resources, such as documentation or community forums. Mention that these resources can help readers further enhance their understanding or skills beyond the blog content.\n
     12. Explore
     Please get any two latest ${product.ProgrammingLanguage}-based titles of the articles with URLs from ${product.BlogsURL}, write in the format [title](url) and return in bullets.\n
+    13. Frequently Asked Questions – FAQs
+    Generate three frequently asked questions along with answers for a technical blog post titled \'${formData.get("title")}\' using \'[${product.value}](${product.ProductURL})\'. The questions should be widely searched on the internet. Keep the answers between 180-220 characters, concise, and technical yet easy to understand. Make the questions bold and answers of the quations should be printed after skipping two new lines. Also do not make questions bullets or numbered.\n
     ${formData.get("additionalInstructions")}
 `
     return prompt;

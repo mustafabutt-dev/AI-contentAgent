@@ -2,6 +2,7 @@
 'use server'
 
 import { promises as fs } from 'fs';
+import path from 'path';
 
 export const parseInputToObjects = async (input:string)=>{
     const result: { heading: string, content: string }[] = [];
@@ -130,3 +131,126 @@ export const processRequest = async (name) => {
         console.log("end")
         return `# ${name}\nThis file is for language: ${name}`;
 };
+ 
+export const markdownToJSON = async (markdown: string): Record<string, any> => {
+    const result: Record<string, any> = {};
+    const lines = markdown.split("\n"); // Break the content into individual lines
+  
+    // Regular expressions for metadata and headings
+    const metadataRegex = /^---\n([\s\S]*?)\n---/;
+    const headingRegex = /^##\s+(.+)$/;
+  
+    let inMetadata = false;
+    let metadataParsed = false;
+  
+    // Data holders
+    let currentSection = "";
+    let sections: Record<string, string> = {};
+    let firstFigureLine = ""; // Hold the first figure tag
+    let figureFound = false; // Track if the first figure has been encountered
+  
+    // Parse the markdown line by line
+    for (const line of lines) {
+      // Detect metadata block
+      if (!metadataParsed && line === "---") {
+        inMetadata = !inMetadata;
+        if (!inMetadata) metadataParsed = true; // End of metadata
+        continue;
+      }
+  
+      // Parse metadata
+      if (inMetadata) {
+        const [key, ...valueParts] = line.split(":");
+        if (!result.metadata) result.metadata = {};
+        if (key && valueParts) {
+          result.metadata[key.trim()] = valueParts.join(":").trim().replace(/^"(.*)"$/, "$1");
+        }
+        continue;
+      }
+  
+      // Detect and handle the "{{< figure ... >}}" syntax
+      if (/^\{\{< figure .+ >\}\}$/.test(line)) {
+        if (!figureFound) {
+          firstFigureLine = line; // Store the first figure line
+          figureFound = true; // Mark as found
+          continue; // Skip this line for now
+        }
+        // For other figure tags, treat them as part of the content
+        if (currentSection) {
+          sections[currentSection] += line + "\n";
+        }
+        continue;
+      }
+  
+      // Detect headings and set up a new section
+      const headingMatch = line.match(headingRegex);
+      if (headingMatch) {
+        currentSection = headingMatch[1].trim();
+        sections[currentSection] = ""; // Start a new section
+        continue;
+      }
+  
+      // Add lines to the current section's content
+      if (currentSection) {
+        sections[currentSection] += line + "\n";
+      }
+    }
+  
+    // Build the result object
+    result.metadata = result.metadata || {};
+    result.firstFigure = firstFigureLine || null; // Store only the first figure line
+    result.sections = sections; // Replace content with sections object
+  
+    // Trim all section contents
+    for (const key in sections) {
+      sections[key] = sections[key].trim();
+    }
+  
+    return result;
+  };
+  
+  
+
+
+  export const jsonToMarkdown = async (json: Record<string, any>): string => {
+    let markdown = "";
+  
+    // Add metadata section to Markdown
+    if (json.metadata) {
+      markdown += "---\n";
+      for (const [key, value] of Object.entries(json.metadata)) {
+        markdown += `${key}: ${value}\n`;
+      }
+      markdown += "---\n\n";
+    }
+  
+    // Add firstFigure property if it exists
+    if (json.firstFigure) {
+      markdown += `${json.firstFigure}\n\n`;
+    }
+  
+    // Add heading sections to Markdown
+    if (json.sections) {
+      for (const [sectionTitle, content] of Object.entries(json.sections)) {
+        markdown += `## ${sectionTitle}\n\n`;
+        markdown += content ? `${content}\n\n` : "\n";
+      }
+    }
+  
+    return markdown.trim();
+  };
+  
+
+  export const createMDFile = async (markdown,uuid)=> {
+    try {
+        if (!(await checkIfExists(path.join(`${process.cwd()}/public/blog-posts`, uuid))))
+            await fs.mkdir(path.join(`${process.cwd()}/public/blog-posts`,uuid));
+
+        await fs.writeFile(`${process.cwd()}/public/blog-posts/${uuid}/index.md`, markdown);
+        console.log("optimized file created");
+        return true;
+    } catch(e) {
+        console.log("optimized file creation failed");
+        return false
+    }
+  }

@@ -10,11 +10,17 @@ export default function Donwload() {
     const fileDownloader = async () => {
         const a = document.createElement('a');
 
-        if((localStorage.getItem('userId') === null || localStorage.getItem('directoryName') === null) && localStorage.getItem('userIdForTrans') === null ){
+        if((localStorage.getItem('userId') === null || localStorage.getItem('directoryName') === null) && (localStorage.getItem('userIdForTrans') === null || localStorage.getItem('userIdForOpt') === null ) ){
             setError("No file found.")
             return;
         }
-        if (localStorage.getItem('userIdForTrans') != null) {
+        if (localStorage.getItem('userIdForOpt') != null) {
+            response = await fetch('/api/download',{method:'GET',headers: {
+                'userIdForOpt': localStorage.getItem('userIdForOpt')
+            }}); 
+            a.download = `${localStorage.getItem('userIdForOpt')}.zip`;
+        }
+        else if (localStorage.getItem('userIdForTrans') != null) {
             response = await fetch('/api/download',{method:'GET',headers: {
                 'userIdForTrans': localStorage.getItem('userIdForTrans')
             }}); 

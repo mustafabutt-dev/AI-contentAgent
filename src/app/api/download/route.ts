@@ -7,7 +7,9 @@ import { NextResponse } from 'next/server'
 
 export async function GET(req) {
   let folderPath;
-  if(req.headers.get('userIdForTrans'))
+  if(req.headers.get('userIdForOpt'))
+    folderPath = path.join(process.cwd(), `public/blog-posts/${req.headers.get('userIdForOpt')}`);
+  else if(req.headers.get('userIdForTrans'))
     folderPath = path.join(process.cwd(), `public/blog-posts/${req.headers.get('userIdForTrans')}`);
   else folderPath =  path.join(process.cwd(), `public/blog-posts/${req.headers.get('uuid')}/${req.headers.get('directoryName')}`);
   const stream = new ReadableStream({

@@ -17,6 +17,7 @@ export const GenerateTOCFormat = async (formData,product,data)=>{
     const onlineTool = await filterSections(output, "Try Online");
     const resources = await filterSections(output, "Public Resources");
     const seeAlso = await filterSections(output, "Explore");
+    const faqs = await filterSections(output, "Frequently Asked Questions – FAQs");
     const formattedDate = await getDate();
     const tags = await formData.get("secondaryKeywords").split(',').map(item => item.trim())
 
@@ -68,6 +69,11 @@ ${resources.content}
 - [Free online applications](${product.FreeAppsURL})
 - [API reference](${product.APIReferenceURL})
 - [How-to guides and articles](${product.BlogsURL})
+
+## Frequently Asked Questions – FAQs
+
+
+${faqs.content}
 
 ## Discover More
 
