@@ -1,4 +1,3 @@
-
 'use server'
 
 import { promises as fs } from 'fs';
@@ -132,6 +131,7 @@ export const processRequest = async (name) => {
         return `# ${name}\nThis file is for language: ${name}`;
 };
  
+
 export const markdownToJSON = async (markdown: string): Record<string, any> => {
     const result: Record<string, any> = {};
     const lines = markdown.split("\n"); // Break the content into individual lines
@@ -169,21 +169,23 @@ export const markdownToJSON = async (markdown: string): Record<string, any> => {
       }
   
       // Detect and handle the "{{< figure ... >}}" syntax
-      if (/^\{\{< figure .+ >\}\}$/.test(line)) {
+      if (/^\{\{< figure .+ ?>\}\}$/.test(line)) { 
         if (!figureFound) {
-          firstFigureLine = line; // Store the first figure line
-          figureFound = true; // Mark as found
-          continue; // Skip this line for now
+            firstFigureLine = line; // Store the first figure line
+            figureFound = true; // Mark as found
+            continue; // Skip this line for now
         }
         // For other figure tags, treat them as part of the content
         if (currentSection) {
-          sections[currentSection] += line + "\n";
+            sections[currentSection] += line + "\n";
         }
         continue;
-      }
+    }
+    
   
       // Detect headings and set up a new section
       const headingMatch = line.match(headingRegex);
+    
       if (headingMatch) {
         currentSection = headingMatch[1].trim();
         sections[currentSection] = ""; // Start a new section

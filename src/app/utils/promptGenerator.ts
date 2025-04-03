@@ -7,7 +7,7 @@ export const promptGenerator = async (formData:FormData, product)=>{
     The target audience is \'${product.ProgrammingLanguage}\' developers. The blog post should include clear \'${product.ProgrammingLanguage}\' code snippets and be written in simple, concise language using short sentences in active voice for easy readability.
     The blog post should include the following sections:
     1. Overview:
-    Start with a 120 words long engaging introduction about the importance of \'${formData.get("title")}\'. Discuss the role of \'[${product.value}](${product.ProductURL})\' across various industries and ensure to use small sentences in active voice. Also, mention the product name with URL like this \'[${product.value}](${product.ProductURL})\'.\n
+    Under the Overview heading, start with a 120 words long engaging introduction about the importance of \'${formData.get("title")}\'. Discuss the role of \'[${product.value}](${product.ProductURL})\' across various industries and ensure to use small sentences in active voice. Also, mention the product name with URL like this \'[${product.value}](${product.ProductURL})\'.\n
     2. Library Installation:
     Provide a quick 2-3 line installation instructions for \'[${product.value}](${product.ProductURL})\'. Include the download URL \'${product.DownloadURL}\' and the installation command: \'${product.InstallCommand}\' .Highlight the features that make \'[${product.value}](${product.ProductURL})\' is ideal to \'${formData.get("primaryKeyword")}\', such as ease of integration, flexibility, and advanced customization options.\n
     3. Code Snippet with a Step-by-Step Guide:

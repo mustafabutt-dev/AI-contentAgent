@@ -11,6 +11,7 @@ import { NextRequest, NextResponse, userAgent } from 'next/server'
 import data from '../../../public/data.json'
 import { OpenAIService } from '@/utils/openAIService';
 import { MixtralService } from '@/app/utils/MixtralService';
+import { DeepSeekService } from '@/app/utils/deepSeekService';
 
 export async function InvokeOpenAI(formData: FormData) {
 
@@ -26,6 +27,8 @@ export async function InvokeOpenAI(formData: FormData) {
   console.log("****************************** form data end")
   let fileData = ''; let text='';
 
+  if(formData.get('model') == "DeepSeek R1")
+    text = await DeepSeekService(prompt)
   if(formData.get('model') == "Mixtral")
     text = await MixtralService(prompt)
   else {

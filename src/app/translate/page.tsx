@@ -14,7 +14,7 @@ export default function Translate() {
   
   const model = [
     { value: 'gpt-4o-mini', label: 'gpt-4o-mini' },
-    { value: 'Mixtral', label: 'Mixtral (Recommended for processing one translation at a time.)' }
+    { value: 'Mixtral', label: 'Mixtral' }
   ];
   const handleDropdownChangeForModel = (value) => {
     setAIModel(value);

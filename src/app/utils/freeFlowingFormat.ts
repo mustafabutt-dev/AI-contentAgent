@@ -20,7 +20,7 @@ export const GenerateFreeFlowingFormat = async (formData,product,data)=>{
     const faqs = await filterSections(output, "Frequently Asked Questions – FAQs");
     const formattedDate = await getDate();
     const tags = await formData.get("secondaryKeywords").split(',').map(item => item.trim())
-
+   
     const content = `---
 title: ${title}
 seoTitle: ${metaTitle.content}
