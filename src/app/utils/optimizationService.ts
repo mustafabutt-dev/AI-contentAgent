@@ -11,7 +11,6 @@ export const OptimizationService = async (fileContent, primrayKeyword) => {
     let keywords=[];
     data.metadata["title"] = primrayKeyword;
 
-       
     keywords = await OpenAIService({
         model: 'gpt-4o',
         maxTokens: 1500,

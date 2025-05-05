@@ -22,7 +22,7 @@ export const filterSections = async (output:object,input:string)=>{
    
     let data = output.find(item => item.heading === input);
     if(input == "Meta Title" || input == "Meta Description" || input == "Short Summary"){
-        data.content = data.content.replace(":","");
+        data.content = data?.content.replace(":","");
         return data
     }
     return data

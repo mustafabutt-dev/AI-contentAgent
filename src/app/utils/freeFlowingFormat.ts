@@ -4,6 +4,11 @@ export const GenerateFreeFlowingFormat = async (formData,product,data)=>{
     let filedata = await normalizeHeadings(data.toString());
    
     const output = await parseInputToObjects(filedata);
+
+    console.log("here is the output -- start");
+    console.log(output)
+    console.log("here is the output  -- end");
+    
     const title = await titleCase(formData.get("title"))
     const metaTitle = await filterSections(output, "Meta Title");
     const metaDesc = await filterSections(output, "Meta Description");
@@ -42,15 +47,15 @@ ${Overview.content}
 
 ## Library Installation
 
-${installation.content}
+${installation?.content}
 
 ## Code Snippet with a Step-by-Step Guide
 
-${steps.content}
+${steps?.content}
 
 ## Get a Free License
 
-${license.content} ${formData.get("onlineTool") ? `\n\n## Try Online\n\n${onlineTool.content}` : ''}
+${license.content} ${formData.get("onlineTool") ? `\n\n## Try Online\n\n${onlineTool?.content}` : ''}
 
 ## Conclusion
 
@@ -58,7 +63,7 @@ ${conclusion.content}
 
 ## Public Resources
 
-${resources.content}
+${resources?.content}
 
 - [Developer’s guide](${product.DocumentationURL})
 - [Free online applications](${product.FreeAppsURL})
@@ -68,11 +73,11 @@ ${resources.content}
 ## Frequently Asked Questions – FAQs
 
 
-${faqs.content}
+${faqs?.content}
 
 ## Explore
 
-${seeAlso.content}
+${seeAlso?.content}
 `
     return content;
 }

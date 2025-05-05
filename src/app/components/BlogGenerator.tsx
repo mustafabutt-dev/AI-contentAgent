@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { getDirectoryName } from '@/utils/utils';
 import Link from 'next/link'
 
-const BlogPostGenerator = () => {
+const BlogPostGenerator = ({value}) => {
   const [selectedOption, setSelectedOption] = useState('');
   const [products, setProducts] = useState('');
   const [loading, setLoading] = useState(false);
@@ -21,6 +21,7 @@ const BlogPostGenerator = () => {
   const [AImodel, setAIModel] = useState('');
   const [temp, setTemp] = useState('');
   const [PostFormat, setPostFormat] = useState('');
+  const [onlineTool, setOnlineTool] = useState('');
   
   const temprature = [
     { value: '0.1', label: '0.1' },
@@ -48,8 +49,13 @@ const BlogPostGenerator = () => {
     { value: 'Table of content(TOC)-based', label: 'Table of content(TOC)-based' }
   ];
   function handleClick(){
-    if(product && title && primaryKeyword && secondaryKeywords && authorName && AImodel && temp && PostFormat)
-      setLoading(true);
+    if(product && title && primaryKeyword && secondaryKeywords && authorName && AImodel && temp && PostFormat){
+      if(value == "non-programmatic" && onlineTool != "")
+        setLoading(true);
+      if(value == "programmatic")
+        setLoading(true);
+    }
+
     (async()=>{
       let directoryName = await getDirectoryName(inputRef.current.value);
       localStorage.setItem('directoryName', directoryName);
@@ -72,7 +78,10 @@ const BlogPostGenerator = () => {
   useEffect(()=>{
     localStorage.setItem('userId', uuidv4());
     (async()=>{
-      let productsResp = await fetch('/data.json');
+      let productsResp;
+      if(value == "programmatic")
+        productsResp = await fetch('/data.json');
+      else productsResp = await fetch('/products.json');
       const data = await productsResp.json();
       localStorage.removeItem('userIdForTrans')
       setProducts(data);
@@ -84,6 +93,7 @@ const BlogPostGenerator = () => {
 
   return (
     <>
+  
       {/* <Link href="/">
         <button className="float-left text-white font-bold py-1 px-1 rounded-full shadow-md bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 bg-[length:400%_400%] animate-spin-slow">
           <span class="mr-2">&#8592; Back</span>
@@ -138,7 +148,7 @@ const BlogPostGenerator = () => {
             </div>
           )}
           <form action={InvokeOpenAI} >
-
+            
             {/* Dropdowns */}
             <div className="mb-4">
               <Dropdown
@@ -160,7 +170,7 @@ const BlogPostGenerator = () => {
                 ref={inputRef}
                 name="title"
                 type="text"
-                placeholder="e.g. Convert HTM"
+                placeholder="e.g. Convert HTML to PDF"
                 className="w-full px-4 py-2 text-black border border-dark-800 rounded-lg focus:outline-none focus:border-blue-500"
               />
             </div>
@@ -196,18 +206,34 @@ const BlogPostGenerator = () => {
             </div>
 
             {/* Online Tool Link */}
-            <div className="mb-4">
-              <label className="block text-gray-700 font-medium mb-2" htmlFor="onlineTool">
-                Online Tool Link (optional)
-              </label>
-              <input
-                name="onlineTool"
-                type="text"
-                placeholder="Enter online tool link"
-                className="w-full text-black px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-              />
-            </div>
-
+            {value == "programmatic" ? 
+              <div className="mb-4">
+                <label className="block text-gray-700 font-medium mb-2" htmlFor="onlineTool">
+                  Online Tool Link (optional)
+                </label>
+                <input
+                  name="onlineTool"
+                  type="text"
+                  placeholder="Enter online tool link"
+                  className="w-full text-black px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                />
+              </div>
+            :
+              <div className="mb-4">
+                <label className="block text-gray-700 font-medium mb-2" htmlFor="onlineTool">
+                  Online Tool Link
+                </label>
+                <input
+                  onChange={(e) => setOnlineTool(e.target.value)}
+                  name="onlineTool"
+                  type="text"
+                  required
+                  placeholder="Enter online tool link"
+                  className="w-full text-black px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                />
+              </div>
+            }
+            
             {/* Auther */}
             <div className="mb-4">
               <label className="block text-gray-700 font-medium mb-2" htmlFor="additionalInstructions">
@@ -279,6 +305,12 @@ const BlogPostGenerator = () => {
                 type="text"
                 value={localStorage.getItem('userId')}
                 placeholder="e.g. 1500"
+                className="hidden"
+              />
+              <input
+                name="BlogType"
+                type="text"
+                value={value}
                 className="hidden"
               />
             {/* Submit Button */}

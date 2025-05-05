@@ -56,7 +56,7 @@ export async function POST(request: Request) {
         const fileName = `${process.cwd()}/public/blog-posts/${request.headers.get('uuid')}/index.${value}.md`;
         const prompt = `Translate the following MD file to the ${label} locale and provide the result in the exact MD format.\n
         1. Do not translate the "gist" tag or modify its content.\n
-        2. Also, do not translate 'date', 'url', 'tags:', and 'categories:' and list of urls at the bottom if present. Only translate title, seoTitle, description, and summary properties.\n
+        2. Also, do not translate 'date', 'url', 'tags:', and 'categories:' and list of urls at the bottom if present. Only translate title, seoTitle, description, and summary properties. I noticed sometimes you translate 'tags' and 'categories' properties which you should not do so. \n
         3. Prepend the locale followed by a forward slash sign to the beginning of the url: property:\n\n${sourceMD}`;
 
         let content;
