@@ -32,6 +32,22 @@
   "license":"https://purchase.aspose.com/temporary-license/"
 },
 {
+  "value" : "Aspose.Email for Java",
+  "Category" : "Aspose.Email Product Family",
+  "ProgrammingLanguage" : "Java",
+  "ProductURL" : "https://products.aspose.com/email/java/",
+  "DownloadURL" : "https://releases.aspose.com/email/java/",
+  "ExternalDownloadURL" : "https://github.com/aspose-email/Aspose.Email-for-Java",
+  "DocumentationURL" : "https://docs.aspose.com/email/java/",
+  "BlogsURL" : "https://blog.aspose.com/categories/aspose.email-product-family/",
+  "APIReferenceURL" : "https://reference.aspose.com/email/java/",
+  "FreeAppsURL" : "https://products.aspose.app/email",
+  "ForumsURL" : "https://forum.aspose.com/c/email/",
+  "InstallCommand" : "<repository>\n  <id>AsposeJavaAPI</id>\n  <name>Aspose Java API</name>\n  <url>https://repository.aspose.com/repo/</url>\n</repository>\n<dependency>\n  <groupId>com.aspose</groupId>\n  <artifactId>aspose-email</artifactId>\n  <version>25.1</version>\n <classifier>jdk16</classifier>\n </dependency>",
+  "urlPrefix" : "email",
+  "license":"https://purchase.aspose.com/temporary-license/"
+},
+{
   "value" : "Aspose.Page for .NET",
   "Category" : "Aspose.Page Product Family",
   "ProgrammingLanguage" : "C#",
@@ -61,6 +77,22 @@
   "ForumsURL" : "https://forum.aspose.com/c/imaging/14",
   "InstallCommand" : "<repository>\n  <id>AsposeJavaAPI</id>\n  <name>Aspose Java API</name>\n  <url>https://repository.aspose.com/repo/</url>\n</repository>\n<dependency>\n  <groupId>com.aspose</groupId>\n  <artifactId>aspose-imaging</artifactId>\n  <version>24.5</version>\n  <classifier>jdk16</classifier>\n</dependency>",
   "urlPrefix" : "imaging",
+  "license":"https://purchase.aspose.com/temporary-license/"
+},
+{
+  "value" : "Aspose.3D for Java",
+  "Category" : "Aspose.3D Product Family",
+  "ProgrammingLanguage" : "Java",
+  "ProductURL" : "https://products.aspose.com/3d/java/",
+  "DownloadURL" : "https://releases.aspose.com/3d/java/",
+  "ExternalDownloadURL" : "https://releases.aspose.com/java/repo/com/aspose/aspose-3d/",
+  "DocumentationURL" : "https://docs.aspose.com/3d/java/",
+  "BlogsURL" : "https://blog.aspose.com/categories/aspose.3d-product-family/",
+  "APIReferenceURL" : "https://reference.aspose.com/3d/java/",
+  "FreeAppsURL" : "https://products.aspose.app/3d",
+  "ForumsURL" : "https://forum.aspose.com/c/3d/18",
+  "InstallCommand" : "<repository>\n  <id>AsposeJavaAPI</id>\n  <name>Aspose Java API</name>\n  <url>https://repository.aspose.com/repo/</url>\n</repository>\n<dependency>\n  <groupId>com.aspose</groupId>\n  <artifactId>aspose-3d</artifactId>\n  <version>25.1.0</version>\n</dependency>",
+  "urlPrefix" : "3d",
   "license":"https://purchase.aspose.com/temporary-license/"
 }
 ,
@@ -140,7 +172,7 @@
   "APIReferenceURL" : "https://reference.aspose.com/slides/java/",
   "FreeAppsURL" : "https://products.aspose.app/slides",
   "ForumsURL" : "https://forum.aspose.com/c/slides/14",
-  "InstallCommand" : "<repository>\n  <id>AsposeJavaAPI</id>\n  <name>Aspose Java API</name>\n  <url>https://repository.aspose.com/repo/</url>\n</repository>\n<dependency>\n  <groupId>com.aspose</groupId>\n  <artifactId>aspose-slides</artifactId>\n  <version>24.4</version>\n  <classifier>jdk16</classifier>\n</dependency>",
+  "InstallCommand" : "<repository>\n  <id>AsposeJavaAPI</id>\n  <name>Aspose Java API</name>\n  <url>https://repository.aspose.com/repo/</url>\n</repository>\n<dependency>\n  <groupId>com.aspose</groupId>\n  <artifactId>aspose-slides</artifactId>\n  <version>25.1</version>\n  <classifier>jdk16</classifier>\n</dependency>",
   "urlPrefix" : "slides",
   "license":"https://purchase.aspose.com/temporary-license/"
 },
@@ -161,6 +193,22 @@
   "license":"https://purchase.aspose.com/temporary-license/"
 },
 {
+  "value" : "Aspose.BarCode for Java",
+  "Category" : "Aspose.BarCode Product Family",
+  "ProgrammingLanguage" : "Java",
+  "ProductURL" : "https://products.aspose.com/barcode/java/",
+  "DownloadURL" : "https://releases.aspose.com/barcode/java/",
+  "ExternalDownloadURL" : "https://releases.aspose.com/java/repo/com/aspose/aspose-barcode/",
+  "DocumentationURL" : "https://docs.aspose.com/barcode/java/",
+  "BlogsURL" : "https://blog.aspose.com/categories/aspose.barcode-product-family/",
+  "APIReferenceURL" : "https://reference.aspose.com/barcode/java/",
+  "FreeAppsURL" : "https://products.aspose.app/barcode/",
+  "ForumsURL" : "https://forum.aspose.com/c/barcode/",
+  "InstallCommand" : "<repository>\n  <id>AsposeJavaAPI</id>\n  <name>Aspose Java API</name>\n  <url>https://repository.aspose.com/repo/</url>\n</repository>\n<dependency>\n  <groupId>com.aspose</groupId>\n  <artifactId>aspose-barcode</artifactId>\n  <version>23.10</version>\n </dependency>",
+  "urlPrefix" : "barcode",
+  "license":"https://purchase.aspose.com/temporary-license/"
+},
+{
   "value" : "Aspose.HTML for Java",
   "Category" : "Aspose.HTML Product Family",
   "ProgrammingLanguage" : "Java",
@@ -173,6 +221,22 @@
   "FreeAppsURL" : "https://products.aspose.app/html/",
   "ForumsURL" : "https://forum.aspose.com/c/html/",
   "InstallCommand" : "<repository>\n  <id>AsposeJavaAPI</id>\n  <name>Aspose Java API</name>\n  <url>https://repository.aspose.com/repo/</url>\n</repository>\n<dependency>\n  <groupId>com.aspose</groupId>\n  <artifactId>aspose-html</artifactId>\n  <version>24.5</version>\n </dependency>",
+  "urlPrefix" : "html",
+  "license":"https://purchase.aspose.com/temporary-license/"
+},
+{
+  "value" : "Aspose.HTML for .NET",
+  "Category" : "Aspose.HTML Product Family",
+  "ProgrammingLanguage" : "C#",
+  "ProductURL" : "https://products.aspose.com/html/net/",
+  "DownloadURL" : "https://releases.aspose.com/html/net/",
+  "ExternalDownloadURL" : "https://releases.aspose.com/net/repo/com/aspose/aspose-html/",
+  "DocumentationURL" : "https://docs.aspose.com/html/net/",
+  "BlogsURL" : "https://blog.aspose.com/categories/aspose.html-product-family/",
+  "APIReferenceURL" : "https://reference.aspose.com/html/net/",
+  "FreeAppsURL" : "https://products.aspose.app/html/",
+  "ForumsURL" : "https://forum.aspose.com/c/html/",
+  "InstallCommand" : "\n\nInstall-Package Aspose.Html\n\n",
   "urlPrefix" : "html",
   "license":"https://purchase.aspose.com/temporary-license/"
 },
@@ -209,6 +273,22 @@
   "license":"https://purchase.aspose.com/temporary-license/"
 },
 {
+  "value" : "Aspose.PSD for Java",
+  "Category" : "Aspose.PSD Product Family",
+  "ProgrammingLanguage" : "Java",
+  "ProductURL" : "https://products.aspose.com/psd/java/",
+  "DownloadURL" : "https://releases.aspose.com/psd/java/",
+  "ExternalDownloadURL" : "https://github.com/aspose-psd",
+  "DocumentationURL" : "https://docs.aspose.com/psd/java/",
+  "BlogsURL" : "https://blog.aspose.com/categories/aspose.psd-product-family/",
+  "APIReferenceURL" : "https://reference.aspose.com/psd/java/",
+  "FreeAppsURL" : "https://products.aspose.app/psd",
+  "ForumsURL" : "https://forum.aspose.com/c/psd/",
+  "InstallCommand" : "<repository>\n  <id>AsposeJavaAPI</id>\n  <name>Aspose Java API</name>\n  <url>https://repository.aspose.com/repo/</url>\n</repository>\n<dependency>\n  <groupId>com.aspose</groupId>\n  <artifactId>aspose-psd</artifactId>\n  <version>25.2</version>\n <classifier>jdk16</classifier>\n </dependency>",
+  "urlPrefix" : "psd",
+  "license":"https://purchase.aspose.com/temporary-license/"
+},
+{
   "value" : "Aspose.ZIP for Java",
   "Category" : "Aspose.ZIP Product Family",
   "ProgrammingLanguage" : "Java",
@@ -240,6 +320,23 @@
   "urlPrefix" : "email",
   "license":"https://purchase.aspose.com/temporary-license/"
 },
+
+{
+  "value" : "Aspose.CAD for JavaScript via .NET",
+  "Category" : "Aspose.CAD Product Family",
+  "ProgrammingLanguage" : "JavaScript",
+  "ProductURL" : "https://products.aspose.com/cad/javascript-net/",
+  "DownloadURL" : "https://releases.aspose.com/cad/javascript-net/",
+  "ExternalDownloadURL" : "https://github.com/aspose-cad",
+  "DocumentationURL" : "https://docs.aspose.com/cad/javascript-net/",
+  "BlogsURL" : "https://blog.aspose.com/categories/aspose.cad-product-family/",
+  "APIReferenceURL" : "https://reference.aspose.com/cad/",
+  "FreeAppsURL" : "https://products.aspose.app/cad",
+  "ForumsURL" : "https://forum.aspose.com/cad/",
+  "InstallCommand" : "npm i aspose-cad",
+  "urlPrefix" : "cad",
+  "license":"https://purchase.aspose.com/temporary-license/"
+},
 {
   "value" : "Aspose.TeX for Python via .NET",
   "Category" : "Aspose.TeX Product Family",
@@ -253,6 +350,22 @@
   "FreeAppsURL" : "https://products.aspose.app/tex",
   "ForumsURL" : "https://forum.aspose.com/c/tex/",
   "InstallCommand" : "pip install aspose-tex-net",
+  "urlPrefix" : "tex",
+  "license":"https://purchase.aspose.com/temporary-license/"
+},
+{
+  "value" : "Aspose.TeX for Java",
+  "Category" : "Aspose.TeX Product Family",
+  "ProgrammingLanguage" : "Java",
+  "ProductURL" : "https://products.aspose.com/tex/java/",
+  "DownloadURL" : "https://releases.aspose.com/tex/java/",
+  "ExternalDownloadURL" : "https://github.com/aspose-tex",
+  "DocumentationURL" : "https://docs.aspose.com/tex/java/",
+  "BlogsURL" : "https://blog.aspose.com/categories/aspose.tex-product-family/",
+  "APIReferenceURL" : "https://reference.aspose.com/tex/java/",
+  "FreeAppsURL" : "https://products.aspose.app/tex",
+  "ForumsURL" : "https://forum.aspose.com/c/tex/",
+  "InstallCommand" : "<repository>\n  <id>AsposeJavaAPI</id>\n  <name>Aspose Java API</name>\n  <url>https://repository.aspose.com/repo/</url>\n</repository>\n<dependency>\n  <groupId>com.aspose</groupId>\n  <artifactId>aspose-tex</artifactId>\n  <version>22.6</version>\n </dependency>",
   "urlPrefix" : "tex",
   "license":"https://purchase.aspose.com/temporary-license/"
 },

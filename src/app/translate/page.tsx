@@ -13,7 +13,7 @@ export default function Translate() {
 
   
   const model = [
-    { value: 'gpt-4o-mini', label: 'gpt-4o-mini' },
+    { value: 'gpt-4o-mini (recommended)', label: 'gpt-4o-mini' },
     { value: 'Mixtral', label: 'Mixtral' }
   ];
   const handleDropdownChangeForModel = (value) => {

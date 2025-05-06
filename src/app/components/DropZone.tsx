@@ -41,12 +41,13 @@ const DropZone = () => {
 
     const translate = async ()=>{
         setLoading(true);
+      
         if(pathname === '/translate'){
             localStorage.setItem('userIdForTrans', uuidv4());
             const response = await fetch('/api/openAI', {
                 method: "POST",
                 body:  fileContent ,
-                headers: { "Content-Type": "application/json", 'uuid': localStorage.getItem('userIdForTrans'), 'model': AIModel, 'languages': JSON.stringify(selectedLang) },
+                headers: { "Content-Type": "application/json", 'uuid': localStorage.getItem('userIdForTrans'), 'model': AIModel.replace(/\s*\(recommended\)/i, ""), 'languages': JSON.stringify(selectedLang) },
               });
             if(response.status == '200')
                 window.location.href = '/download'; 

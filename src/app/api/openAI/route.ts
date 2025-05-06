@@ -39,8 +39,7 @@ export async function GET(request) {
 
 export async function POST(request: Request) {
     const sourceMD = await request.text()
-   console.log("file read")
-   console.log(sourceMD);
+   
     const { readable, writable } = new TransformStream();
     const writer = writable.getWriter();
     let i = 0;

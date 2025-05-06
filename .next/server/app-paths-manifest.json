@@ -1,11 +1,11 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/openAI/route": "app/api/openAI/route.js",
-  "/generate/page": "app/generate/page.js",
   "/download/page": "app/download/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/download/route": "app/api/download/route.js",
+  "/generate/page": "app/generate/page.js",
+  "/page": "app/page.js",
   "/optimize/page": "app/optimize/page.js",
   "/translate/page": "app/translate/page.js",
-  "/page": "app/page.js",
-  "/api/download/route": "app/api/download/route.js"
+  "/api/openAI/route": "app/api/openAI/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }
