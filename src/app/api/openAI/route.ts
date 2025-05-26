@@ -3,7 +3,7 @@ const fs = require('fs').promises;
 import { NextResponse } from 'next/server';
 import path from 'path';
 import { redirect } from "next/navigation";
-import { checkIfExists, processRequest } from "@/app/utils/utils";
+import { checkIfExists, processRequest, syncTagsAndCategories } from "@/app/utils/utils";
 import eventBus from '@/app/components/eventBus';
 import { OpenAIService } from '@/app/utils/openAIService';
 import { EventEmitter } from 'events';
@@ -38,6 +38,8 @@ export async function GET(request) {
 }
 
 export async function POST(request: Request) {
+
+
     const sourceMD = await request.text()
    
     const { readable, writable } = new TransformStream();
@@ -55,7 +57,7 @@ export async function POST(request: Request) {
         const fileName = `${process.cwd()}/public/blog-posts/${request.headers.get('uuid')}/index.${value}.md`;
         const prompt = `Translate the following MD file to the ${label} locale and provide the result in the exact MD format.\n
         1. Do not translate the "gist" tag or modify its content.\n
-        2. Also, do not translate 'date', 'url', 'tags:', and 'categories:' and list of urls at the bottom if present. Only translate title, seoTitle, description, and summary properties. I noticed sometimes you translate 'tags' and 'categories' properties which you should not do so. \n
+        2. Also, do not translate 'date', 'url', 'tags:', and 'categories:' and list of urls at the bottom if present. Only translate title, seoTitle, description, and summary properties. I noticed sometimes you translate 'tags:' and 'categories:' properties which you should not do so and it is very important. \n
         3. Prepend the locale followed by a forward slash sign to the beginning of the url: property:\n\n${sourceMD}`;
 
         let content;
@@ -66,11 +68,6 @@ export async function POST(request: Request) {
             let message = `Translating in ${label}, Progress: ${progress.toFixed(2)}%`;   
             globalThis.eventEmitter.emit('update', message);
 
-            // if (i !== 1){
-            //   console.log(`gone sleepo0 ${i}`);
-            //   await sleep(60000);
-            //   console.log("i am awake now");
-            // }
             if(request.headers.get('model') == "Mixtral")
               content = await MixtralService(prompt)
             if(request.headers.get('model') == "gpt-4o-mini")
@@ -84,14 +81,13 @@ export async function POST(request: Request) {
           
            
             const clearData = content.replace(/^\s*```markdown\s*|\s*```$/g, '');
-            await fs.writeFile(fileName, clearData);
+
+            const updatedContent = await syncTagsAndCategories(sourceMD, clearData);
+
+            await fs.writeFile(fileName, updatedContent);
             console.log(`File created: ${fileName}`);
 
             
-            // console.log("hitting sleep")
-            // await sleep(13000);
-            // console.log(" sleep off")
-
         } catch (err) {
             console.error(`Failed to create file ${fileName}:`, err);
         }

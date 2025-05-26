@@ -55,6 +55,16 @@ const SideBar = () => {
                             </div>
                         </Link>
                     </li>
+                    <li className={`p-2 ${
+                        pathname === '/socials' ? 'bg-gray-500 text-white' : 'hover:bg-gray-200'
+                    }`}>
+                        <Link href="/socials">
+                            <div className="shadow-md p-2 bg-white rounded cursor-pointer no-style flex items-center p-2 text-gray-900 rounded-lg dark:text-dark hover:bg-gray-100 dark:hover:bg-black-700 group">
+                            {/* <img src={"/images/clients.png"}  width={25} height={25} /> */}
+                            <span className="ms-3">Share on Socials</span>
+                            </div>
+                        </Link>
+                    </li>
                     
                     </ul>
                 </div>

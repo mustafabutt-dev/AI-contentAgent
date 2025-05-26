@@ -256,3 +256,29 @@ export const markdownToJSON = async (markdown: string): Record<string, any> => {
         return false
     }
   }
+
+  export const syncTagsAndCategories = async (source: string, changed: string)=> {
+    const extractYamlField = (text: string, field: string): string | null => {
+      const regex = new RegExp(`${field}:\\s*(\\[[^\\]]*\\])`);
+      const match = text.match(regex);
+      return match ? match[0] : null;
+    };
+  
+    const sourceTags = extractYamlField(source, 'tags');
+    const sourceCategories = extractYamlField(source, 'categories');
+  
+    const changedTags = extractYamlField(changed, 'tags');
+    const changedCategories = extractYamlField(changed, 'categories');
+  
+    let updated = changed;
+  
+    if (sourceTags && changedTags && sourceTags !== changedTags) {
+      updated = updated.replace(changedTags, sourceTags);
+    }
+  
+    if (sourceCategories && changedCategories && sourceCategories !== changedCategories) {
+      updated = updated.replace(changedCategories, sourceCategories);
+    }
+  
+    return updated;
+  }

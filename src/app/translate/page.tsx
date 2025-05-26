@@ -44,7 +44,6 @@ export default function Translate() {
     {value: 'sv', label: 'Swedish'}
   ];
   const handleDropdownChange = (selected) => {
-    
     setSelectedLang(selected);
     setShowDropZone(true);
   };
@@ -72,6 +71,7 @@ export default function Translate() {
       label="Select Languages"
       onChange={handleDropdownChange}
       className="w-full"
+      parent = {"translate"}
     />
   </div>
   )}

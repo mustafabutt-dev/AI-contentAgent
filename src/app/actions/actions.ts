@@ -16,7 +16,7 @@ import productsData from '../../../public/products.json'
 import { OpenAIService } from '@/utils/openAIService';
 import { MixtralService } from '@/app/utils/MixtralService';
 import { DeepSeekService } from '@/app/utils/deepSeekService';
-
+import { LinkedInService } from '@/app/utils/LinkedInService';
 export async function InvokeOpenAI(formData: FormData) {
 
   let product;
@@ -69,4 +69,51 @@ export async function InvokeOpenAI(formData: FormData) {
   await markdownFileGenertaor(fileData,formData.get("uuid"), formData.get("title"));
   console.log(`all done`)
   redirect('/download')
+}
+
+export async function makeServerCall(formData: FormData) {
+  console.log("****************************** server call form data start hooooo1")
+  console.log(formData)
+  if (JSON.parse(formData.get("platforms")).value && JSON.parse(formData.get("platforms")).value !== '""') 
+    return null
+
+  const platforms = JSON.parse(formData.get("platforms"))
+  let results: { value: string; data: string }[] = [];
+  for (let i = 0; i < platforms.length; i++) {
+    try {
+  
+        const response = await OpenAIService({
+          model: "gpt-4o",
+          maxTokens: 500,
+          temperature: 0.3,
+          maxRetries: 5,
+          prompt: `I want to create a ${platforms[i].value} post. Please follow these instructions:
+          1. Read and summarize the key points from this blog post: ${formData.get("url")}
+          2. Keep the tone ${formData.get("mood")} and professional.
+          3. The target audience is ${formData.get("audience")}.
+          4. Include popular and relevant hashtags.
+          5. The total post length should be between 200–300 characters including hashtags.
+          6. Do not include any introductory or explanatory text. Return only the post content.`
+        });
+        results.push({
+          value: platforms[i].value,
+          data: response.content || response.text || response || "", // adjust based on actual OpenAIService return format
+        });
+
+        console.log("reslut is ");
+       
+    } catch (error) {
+      console.error(`Failed to generate post for ${platforms[i]}:`, error);
+    }
+  }
+ 
+
+  let resp;
+  if(platforms.find(p => p.value === 'linkedin'))
+    resp = await LinkedInService(results.find(p => p.value === 'linkedin'), formData.get("url"))
+  if(platforms.find(p => p.value === 'facebook'))
+    console.log("fb true")
+  if(platforms.find(p => p.value === 'x'))
+    console.log("x true")
+  return resp
 }

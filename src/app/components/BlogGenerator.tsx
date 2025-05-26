@@ -40,7 +40,7 @@ const BlogPostGenerator = ({value}) => {
     { value: 'gpt-4o-mini', label: 'gpt-4o-mini' },
     { value: 'gpt-4', label: 'gpt-4' },
     { value: 'Mixtral', label: 'Mixtral' },
-    { value: 'DeepSeek R1', label: 'DeepSeek R1' }
+    // { value: 'DeepSeek R1', label: 'DeepSeek R1' }
     
   ];
 
@@ -104,43 +104,6 @@ const BlogPostGenerator = ({value}) => {
         
         <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-8">
           <h2 className="text-4xl font-bold mb-6 text-black text-center">Create Blog Post</h2>
-          <style jsx>{`
-          .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-          }
-
-          .loader {
-            border: 4px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 4px solid #3498db;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-          }
-
-          @keyframes spin {
-            0% {
-              transform: rotate(0deg);
-            }
-            100% {
-              transform: rotate(360deg);
-            }
-          }
-
-          form {
-            position: relative;
-            z-index: 1; /* Keeps form under the overlay when loading */
-          }
-        `}</style>
 
           {loading && (
             <div className="overlay">

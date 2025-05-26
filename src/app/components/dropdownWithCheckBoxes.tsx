@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 interface Option {
   label: string;
@@ -12,7 +13,7 @@ interface DropdownProps {
   onChange?: (selected: Option[]) => void;
 }
 
-const DropdownWithCheckboxes = ({ name, options, label, onChange }) => {
+const DropdownWithCheckboxes = ({ name, options, label, onChange, parent }) => {
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -93,6 +94,7 @@ const DropdownWithCheckboxes = ({ name, options, label, onChange }) => {
               className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
             >
               <input
+                required
                 type="checkbox"
                 checked={selectedOptions.length === options.length}
                 onChange={handleSelectAll}
@@ -106,14 +108,15 @@ const DropdownWithCheckboxes = ({ name, options, label, onChange }) => {
                 className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
               >
                 <input
+                  required
                   type="checkbox"
                   name={name}
                   value={option.value}
                   checked={selectedOptions.some((selected) => selected.value === option.value)}
                   onChange={handleCheckboxChange}
-                  className="form-checkbox h-4 w-4 text-blue-600"
+                  className="form-checkbox h-4 w-4 text-blue-600 mr-2"
                 />
-                <span className="ml-2 text-gray-800">{option.label}-({option.value})</span>
+                {parent == "socials" ? <><Image src={`/images/${option.value}.png`} alt="Banner" width={20} height={20} priority /> <span className="ml-2 text-gray-800">{option.label}</span></>:<span className="ml-2 text-gray-800">{option.label}-({option.value})</span>}
               </label>
             ))}
           </div>
@@ -124,3 +127,4 @@ const DropdownWithCheckboxes = ({ name, options, label, onChange }) => {
 };
 
 export default DropdownWithCheckboxes;
+
