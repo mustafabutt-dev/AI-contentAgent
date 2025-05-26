@@ -23,6 +23,8 @@ Built with [Next.js](https://nextjs.org/), it leverages the power of open source
 
 Now, open the application in the web browser by navigating to [localhost:3000](http://localhost:3000/).
 
+The LinkedIn integration enables this AI agent to automatically share blog posts directly to your LinkedIn account with proper hashtags and post description.
+
 To enable LinkedIn integration, please follow these steps:
 
 1. Visit [LinkedIn Developer's page](https://www.linkedin.com/developers/apps/new).
