@@ -8,13 +8,12 @@ import eventBus from '@/app/components/eventBus';
 import { OpenAIService } from '@/app/utils/openAIService';
 import { EventEmitter } from 'events';
 import { MixtralService } from '@/app/utils/MixtralService';
+import { updateMarkdownLinksWithLanguage } from '@/app/utils/utils';
 
 if (!globalThis.eventEmitter) {
   globalThis.eventEmitter = new EventEmitter();
 }
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+
 // GET method for handling Server-Sent Events (SSE)
 export async function GET(request) {
   const { readable, writable } = new TransformStream();
@@ -39,8 +38,7 @@ export async function GET(request) {
 
 export async function POST(request: Request) {
 
-
-    const sourceMD = await request.text()
+    let sourceMD = await request.text()
    
     const { readable, writable } = new TransformStream();
     const writer = writable.getWriter();
@@ -54,11 +52,14 @@ export async function POST(request: Request) {
         await fs.mkdir(path.join(`${process.cwd()}/public/blog-posts`,request.headers.get('uuid')));
 
     for (const { value, label } of languages) {
+
+        let sourceMDModifiedExplore = await updateMarkdownLinksWithLanguage(sourceMD, value);
+        
         const fileName = `${process.cwd()}/public/blog-posts/${request.headers.get('uuid')}/index.${value}.md`;
         const prompt = `Translate the following MD file to the ${label} locale and provide the result in the exact MD format.\n
         1. Do not translate the "gist" tag or modify its content.\n
         2. Also, do not translate 'date', 'url', 'tags:', and 'categories:' and list of urls at the bottom if present. Only translate title, seoTitle, description, and summary properties. I noticed sometimes you translate 'tags:' and 'categories:' properties which you should not do so and it is very important. \n
-        3. Prepend the locale followed by a forward slash sign to the beginning of the url: property:\n\n${sourceMD}`;
+        3. Prepend the locale followed by a forward slash sign to the beginning of the url: property:\n\n${sourceMDModifiedExplore}`;
 
         let content;
         i++;
@@ -79,11 +80,10 @@ export async function POST(request: Request) {
                   prompt: prompt,
               });
           
-           
             const clearData = content.replace(/^\s*```markdown\s*|\s*```$/g, '');
 
-            const updatedContent = await syncTagsAndCategories(sourceMD, clearData);
-
+            const updatedContent = await syncTagsAndCategories(sourceMDModifiedExplore, clearData);
+            
             await fs.writeFile(fileName, updatedContent);
             console.log(`File created: ${fileName}`);
 

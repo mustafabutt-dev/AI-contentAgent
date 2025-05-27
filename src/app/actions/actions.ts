@@ -17,6 +17,7 @@ import { OpenAIService } from '@/utils/openAIService';
 import { MixtralService } from '@/app/utils/MixtralService';
 import { DeepSeekService } from '@/app/utils/deepSeekService';
 import { LinkedInService } from '@/app/utils/LinkedInService';
+
 export async function InvokeOpenAI(formData: FormData) {
 
   let product;
@@ -73,13 +74,14 @@ export async function InvokeOpenAI(formData: FormData) {
 
 export async function makeServerCall(formData: FormData) {
   console.log("****************************** server call form data start hooooo1")
-  console.log(formData)
+
   if (JSON.parse(formData.get("platforms")).value && JSON.parse(formData.get("platforms")).value !== '""') 
     return null
 
   const platforms = JSON.parse(formData.get("platforms"))
   let results: { value: string; data: string }[] = [];
   for (let i = 0; i < platforms.length; i++) {
+
     try {
   
         const response = await OpenAIService({
@@ -107,7 +109,6 @@ export async function makeServerCall(formData: FormData) {
     }
   }
  
-
   let resp;
   if(platforms.find(p => p.value === 'linkedin'))
     resp = await LinkedInService(results.find(p => p.value === 'linkedin'), formData.get("url"))

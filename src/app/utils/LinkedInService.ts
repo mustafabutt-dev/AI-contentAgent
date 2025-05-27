@@ -1,6 +1,6 @@
 'use server'
 
-export const LinkedInService = async (content, url) => {
+export const LinkedInService = async (content, url, imageUrl) => {
   const payload = {
         "author": `urn:li:person:${process.env.USER_ID}`,
         "lifecycleState": "PUBLISHED",
@@ -19,7 +19,12 @@ export const LinkedInService = async (content, url) => {
                         "originalUrl": url,
                         "title": {
                             "text": "Click here to read more"
-                        }
+                        },
+                        "thumbnails": [
+                          {
+                            "resolvedUrl": imageUrl
+                          }
+                        ]
                     }
                 ]
             }

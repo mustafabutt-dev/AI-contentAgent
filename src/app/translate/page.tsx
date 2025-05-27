@@ -51,38 +51,38 @@ export default function Translate() {
   return (
 
     <div className="w-full max-w-2xl mx-auto flex flex-col min-h-screen items-center justify-start pt-12 space-y-4">
-  {/* Model Selection */}
-  <div className="w-full flex flex-col items-start">
-    <Dropdown
-      name="model"
-      label="Select a Model"
-      options={model}
-      onChange={handleDropdownChangeForModel}
-      className="w-full"
-    />
-  </div>
-
-  {/* Language Selection */}
-  {showLangDrop && (
+    {/* Model Selection */}
     <div className="w-full flex flex-col items-start">
-    <DropdownWithCheckboxes
-      name="languages"
-      options={languages}
-      label="Select Languages"
-      onChange={handleDropdownChange}
-      className="w-full"
-      parent = {"translate"}
-    />
-  </div>
-  )}
-
-  {/* DropZone (Shown Only If AIModel is Selected) */}
-  {showDropZone && (
-    <div className="w-full flex flex-col items-center">
-      <DropZone />
+      <Dropdown
+        name="model"
+        label="Select a Model"
+        options={model}
+        onChange={handleDropdownChangeForModel}
+        className="w-full"
+      />
     </div>
-  )}
-</div>
+
+    {/* Language Selection */}
+    {showLangDrop && (
+      <div className="w-full flex flex-col items-start">
+      <DropdownWithCheckboxes
+        name="languages"
+        options={languages}
+        label="Select Languages"
+        onChange={handleDropdownChange}
+        className="w-full"
+        parent = {"translate"}
+      />
+    </div>
+    )}
+
+    {/* DropZone (Shown Only If AIModel is Selected) */}
+    {showDropZone && (
+      <div className="w-full flex flex-col items-center">
+        <DropZone />
+      </div>
+    )}
+  </div>
 
 
   );

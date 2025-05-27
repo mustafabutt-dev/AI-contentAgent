@@ -282,3 +282,16 @@ export const markdownToJSON = async (markdown: string): Record<string, any> => {
   
     return updated;
   }
+
+  export const updateMarkdownLinksWithLanguage = async (markdown: string, lang: string)=> {
+    
+    const headings = ["Explore", "See More", "Discover More", "Read More"];
+    const headingRegex = new RegExp(`## (?:${headings.join("|")})[\\s\\S]*?(?=\\n##|$)`, "gi");
+  
+    return markdown.replace(headingRegex, (section) => {
+      return section.replace(
+        /(\()https:\/\/blog\.aspose\.com\/(?![a-z]{2}\/)([^)\s]*)/g,
+        `$1https://blog.aspose.com/${lang}/$2`
+      );
+    });
+  }

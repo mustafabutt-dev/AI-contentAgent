@@ -60,8 +60,7 @@ const DropZone = () => {
             if(file)
                 window.location.href = '/download'; 
         }
-         
-           
+             
     }
 
     const onDrop = (acceptedFiles) => {
