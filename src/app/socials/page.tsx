@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import { makeServerCall } from '@/actions/actions';
 import Dropdown from '@/app/components/dropDown';
 import DropdownWithCheckboxes from "@/components/dropdownWithCheckBoxes";
+import Image from 'next/image';
 
 export default function Optimize() {
   const [tone, setTone] = useState('');
@@ -17,6 +18,14 @@ export default function Optimize() {
   const [socialPlatform, setSocialPlatform] = useState('');
   const [message, setMessage] = useState(false);
   const [dropdownKey, setDropdownKey] = useState(0);
+  const [fbSuccessStatus, setFbSuccessStatus] = useState(false);
+  const [lkSuccessStatus, setLkSuccessStatus] = useState(false);
+
+  const [fbFailedStatus, setFbFailedStatus] = useState(false);
+  const [lkFailedSuccessStatus, setLkFailedSuccessStatus] = useState(false);
+
+  const [xFailedStatus, setXFailedStatus] = useState(false);
+  const [xSuccessStatus, setXSuccessStatus] = useState(false);
 
   const handleClick = ()=>{
     if(!socialPlatform)
@@ -26,17 +35,44 @@ export default function Optimize() {
   }
   async function handleServerFunction(formData: FormData)  {
     const result = await makeServerCall(formData);
-    if (result.success) {
-     
+
+    for (let i = 0; i < result.length; i++) {
+      const post = result[i];
+    
+      if (post.platform === "facebook") {
+        if (post.success) 
+          setFbSuccessStatus(true);
+        else setFbFailedStatus(true);
+      }
+    
+      if (post.platform === "linkedin") {
+        if (post.success) 
+          setLkSuccessStatus(true);
+        else setLkFailedSuccessStatus(true);
+      }
+
+      if (post.platform === "x") {
+        if (post.success) 
+          setXSuccessStatus(true);
+        else setXFailedStatus(true);
+      }
+    }
+    
       setLoading(false); 
       setMessage(true); 
       setArticleURL('');
       setDropdownKey(prev => prev + 1);
       setShowError(false);
-      setTimeout(()=>{  setMessage(false); },3000)
-    } else {
-      setMessage("Something went wrong.");
-    }
+      setTimeout(()=>{ 
+         setMessage(false); 
+         setFbSuccessStatus(false)
+         setFbFailedStatus(false)
+         setLkSuccessStatus(false);
+         setLkFailedSuccessStatus(false);
+         setXFailedStatus(false);
+         setXSuccessStatus(false);
+      },4000)
+    
   }
   const handleDropdownChangeForTone = (value) => {
     setTone(value);
@@ -65,8 +101,8 @@ export default function Optimize() {
   ];
   const plateform = [
     { value: 'linkedin', label: 'LinkedIn' },
-    // { value: 'facebook', label: 'Facebook' },
-    // { value: 'x', label: 'X' },
+    { value: 'facebook', label: 'Facebook' },
+    { value: 'x', label: 'X' }
   ];
   
   return (   
@@ -78,7 +114,28 @@ export default function Optimize() {
           {(loading || message) && (
             <div className="overlay">
               {loading && !message && <div className="loader"></div>}
-              {message && <img src="/images/check.png" alt="Success" width={60} height={60} />}
+              {message && <div id="postStatusPopup" class="fixed top-5 right-5 bg-white border border-gray-200 shadow-xl rounded-2xl p-4 w-80 z-50">
+                <h2 class="text-lg font-semibold mb-3">Post Status</h2>
+                <ul class="space-y-2">
+                  <li class="flex items-center">
+                    
+                    {!fbFailedStatus && !fbSuccessStatus? null:<span class="text-blue-600 font-medium mr-2"><Image src={`/images/facebook.png`} alt="Banner" width={20} height={20} priority /></span>}
+                    {fbSuccessStatus? <span class="text-green-600 font-bold">✅ Posted successfully</span>: null} {fbFailedStatus? <span class="text-red-600 font-bold">❌ Failed to post</span>: null}
+                  </li>
+
+                  <li class="flex items-center">
+             
+                    {!lkFailedSuccessStatus && !lkSuccessStatus?null :<span class="text-blue-800 font-medium mr-2"><Image src={`/images/linkedin.png`} alt="Banner" width={20} height={20} priority /></span>}
+                    {lkSuccessStatus? <span class="text-green-600 font-bold">✅ Posted successfully</span>: null} {lkFailedSuccessStatus? <span class="text-red-600 font-bold">❌ Failed to post</span>: null}
+                  </li>
+
+                  <li class="flex items-center">
+             
+                    {!xSuccessStatus && !xFailedStatus ? null :<span class="text-blue-800 font-medium mr-2"><Image src={`/images/x.png`} alt="Banner" width={20} height={20} priority /></span>}
+                    {xSuccessStatus? <span class="text-green-600 font-bold">✅ Posted successfully</span>: null} {xFailedStatus? <span class="text-red-600 font-bold">❌ Failed to post</span>: null}
+                  </li>
+                </ul>
+              </div>}
             </div>
           )}
           <form action={handleServerFunction} key={dropdownKey}>

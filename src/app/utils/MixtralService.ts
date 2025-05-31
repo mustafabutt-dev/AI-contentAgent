@@ -3,7 +3,6 @@ import { createOpenAI as createGroq  } from '@ai-sdk/openai';
 import {  generateText } from 'ai';
 
 export const MixtralService = async (prompt) => {
-  console.log("reqst came")
 
     const groq = createGroq({
       baseURL: 'https://api.groq.com/openai/v1',

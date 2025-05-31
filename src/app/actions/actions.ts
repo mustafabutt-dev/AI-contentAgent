@@ -17,7 +17,8 @@ import { OpenAIService } from '@/utils/openAIService';
 import { MixtralService } from '@/app/utils/MixtralService';
 import { DeepSeekService } from '@/app/utils/deepSeekService';
 import { LinkedInService } from '@/app/utils/LinkedInService';
-
+import { FacebooknService } from '@/app/utils/FacebookService';
+import { XService } from '@/app/utils/xService';
 export async function InvokeOpenAI(formData: FormData) {
 
   let product;
@@ -94,14 +95,13 @@ export async function makeServerCall(formData: FormData) {
           2. Keep the tone ${formData.get("mood")} and professional.
           3. The target audience is ${formData.get("audience")}.
           4. Include popular and relevant hashtags.
-          5. The total post length should be between 200–300 characters including hashtags.
+          5. The total post length should be between 150–200 characters including hashtags.
           6. Do not include any introductory or explanatory text. Return only the post content.`
         });
         results.push({
           value: platforms[i].value,
           data: response.content || response.text || response || "", // adjust based on actual OpenAIService return format
         });
-
         console.log("reslut is ");
        
     } catch (error) {
@@ -109,12 +109,12 @@ export async function makeServerCall(formData: FormData) {
     }
   }
  
-  let resp;
+  let resp=[];
   if(platforms.find(p => p.value === 'linkedin'))
-    resp = await LinkedInService(results.find(p => p.value === 'linkedin'), formData.get("url"))
+    resp.push(await LinkedInService(results.find(p => p.value === 'linkedin'), formData.get("url")))
   if(platforms.find(p => p.value === 'facebook'))
-    console.log("fb true")
+    resp.push(await FacebooknService(results.find(p => p.value === 'facebook'), formData.get("url")))
   if(platforms.find(p => p.value === 'x'))
-    console.log("x true")
+  resp.push(await XService(results.find(p => p.value === 'x'), formData.get("url")))
   return resp
 }

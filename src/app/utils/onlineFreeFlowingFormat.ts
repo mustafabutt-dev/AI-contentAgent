@@ -24,8 +24,6 @@ export const GenerateOnlineFreeFlowingFormat = async (formData,product,data)=>{
     const formattedDate = await getDate();
     const tags = await formData.get("secondaryKeywords").split(',').map(item => item.trim())
    
-    console.log("hel yaaaaa");
-    console.log(programmatically)
     const content = `---
 title: ${title}
 seoTitle: ${metaTitle.content}

@@ -9,14 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/deepseek": "^0.1.6",
     "@ai-sdk/openai": "^0.0.63",
     "@google-cloud/storage": "^7.13.0",
     "ai": "^3.4.7",
     "archiver": "^7.0.1",
+    "axios": "^1.9.0",
+    "cheerio": "^1.0.0",
     "next": "14.2.13",
+    "openai": "^4.100.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-dropzone": "^14.3.5",
+    "react-icons": "^5.4.0",
+    "rxjs": "^7.8.1",
+    "twitter-api-v2": "^1.23.2",
     "uuid": "^10.0.0",
+    "ws": "^8.18.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

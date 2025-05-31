@@ -47,16 +47,14 @@ export const LinkedInService = async (content, url) => {
       if (!response.ok) {
         const errorData = await response.json();
         console.error("LinkedIn API error:", errorData);
-        throw new Error("Failed to post to LinkedIn");
+        return { success: false,platform:"linkedin", error: errorData };
       }
   
       const data = await response.json();
       console.log("Post successful:", data);
-      return { success: true, data };
+      return { success: true, platform:"linkedin", data };
     } catch (err) {
       console.error("Error posting to LinkedIn:", err);
-      return { success: false, error: err };
+      return { success: false,platform:"linkedin", error: err };
     }
-
-  
   }
