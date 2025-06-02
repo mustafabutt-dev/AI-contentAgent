@@ -19,6 +19,8 @@ import { DeepSeekService } from '@/app/utils/deepSeekService';
 import { LinkedInService } from '@/app/utils/LinkedInService';
 import { FacebooknService } from '@/app/utils/FacebookService';
 import { XService } from '@/app/utils/xService';
+import { scrapeBlogTitle } from '@/app/utils/scraper';
+
 export async function InvokeOpenAI(formData: FormData) {
 
   let product;
@@ -108,10 +110,11 @@ export async function makeServerCall(formData: FormData) {
       console.error(`Failed to generate post for ${platforms[i]}:`, error);
     }
   }
- 
+  let blogTitle = await scrapeBlogTitle(formData.get("url"));
+
   let resp=[];
   if(platforms.find(p => p.value === 'linkedin'))
-    resp.push(await LinkedInService(results.find(p => p.value === 'linkedin'), formData.get("url")))
+    resp.push(await LinkedInService(results.find(p => p.value === 'linkedin'), formData.get("url"), blogTitle))
   if(platforms.find(p => p.value === 'facebook'))
     resp.push(await FacebooknService(results.find(p => p.value === 'facebook'), formData.get("url")))
   if(platforms.find(p => p.value === 'x'))

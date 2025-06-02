@@ -97,7 +97,7 @@ export default function Optimize() {
     { value: 'Software Developers', label: 'Software Developers' },
     { value: 'Gamers', label: 'Gamers' },
     { value: 'Students', label: 'Students' },
-    { value: 'Researchers', label: 'Researcher' },
+    { value: 'Researchers', label: 'Researcher' }
   ];
   const plateform = [
     { value: 'linkedin', label: 'LinkedIn' },

@@ -1,8 +1,8 @@
 'use server'
 
-export const LinkedInService = async (content, url) => {
+export const LinkedInService = async (content, url, blogTitle) => {
   const payload = {
-        "author": `urn:li:person:${process.env.USER_ID}`,
+        "author": `urn:li:person:${process.env.LINKEDIN_ID}`,
         "lifecycleState": "PUBLISHED",
         "specificContent": {
             "com.linkedin.ugc.ShareContent": {
@@ -18,7 +18,7 @@ export const LinkedInService = async (content, url) => {
                         },
                         "originalUrl": url,
                         "title": {
-                            "text": "Click here to read more"
+                            "text": blogTitle || "Read more"
                         },
                         "thumbnails": [
                           {
@@ -38,7 +38,7 @@ export const LinkedInService = async (content, url) => {
       const response = await fetch("https://api.linkedin.com/v2/ugcPosts", {
         method: "POST",
         headers: {
-          Authorization: process.env.ACCESS_TOKEN,
+          Authorization: process.env.LINKEDIN_ACCESS_TOKEN,
           "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)

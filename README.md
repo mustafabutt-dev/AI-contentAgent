@@ -27,10 +27,10 @@ The auto-posting feature has been enabled.
 
 With this update, the agent can now automatically generate posts with relevant hashtags, descriptions, and the article URL, then publish them across multiple social media platforms such as [X](https://x.com/home), [LinkedIn](https://linkedin.com/) and [Facebook](https://www.facebook.com/).
 
-To enable LinkedIn integration, please follow these steps:
+To enable LinkedIn page/user integration, please follow these steps:
 
 1. Visit [LinkedIn Developer's page](https://www.linkedin.com/developers/apps/new).
-2. Create App and get access and user Id.
+2. Create App and get access and page/user Id.
 3. Put your access token and user ID inside the `.env.local` file.
 
 Please check this [video guide](https://www.youtube.com/watch?v=3JqpUyKukyw) in case you find any difficulty.
