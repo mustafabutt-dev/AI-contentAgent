@@ -49,4 +49,4 @@ To enable X (formerly Twitter) integration, please follow these steps:
 ## [Blog Post Creation - Demo video](https://www.dropbox.com/scl/fi/qr1gcweidh4p45tbkgthy/demo.mov?rlkey=m9ghqq40flzav47pkcniw1d27&st=60909eip&dl=0)
 ## [Blog Post Translation - Demo video](https://www.dropbox.com/scl/fi/319pdbky49z70zsxg9zqe/translation.mp4?rlkey=oc5m5zw7npwcv33ktmruxrpa6&st=by3m4l0y&dl=0)
 ## [Share Blog Post on Socials - Demo video](https://www.dropbox.com/scl/fi/tc6hk8sbphaiu8dhjdkey/socials.mov?rlkey=o1ouzlqz84b58vlzyw3veyctq&e=1&st=n0fr519u&dl=0)
-
+## [Next Topic Recommender](https://www.dropbox.com/scl/fi/977jwbvsau7ee3qxvxd1i/recommender.mov?rlkey=fu1xk0rqaes7jzdups3nuntcs&st=f8dtf2vu&dl=0)

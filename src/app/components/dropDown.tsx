@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Dropdown = ({ name, options, label, onChange }) => {
+const Dropdown = ({ name, options, label, onChange, isRecommend }) => {
   const [selectedValue, setSelectedValue] = useState('');
 
   const handleChange = (event) => {
@@ -19,7 +19,7 @@ const Dropdown = ({ name, options, label, onChange }) => {
          ---
         </option>
         {options.map((option, index) => (
-          <option key={index} value={option.value}>
+          <option key={index} value={isRecommend?JSON.stringify(option): option.value}>
             {option.value}
           </option>
         ))}

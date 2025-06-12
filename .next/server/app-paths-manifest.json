@@ -1,12 +1,13 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/api/download/route": "app/api/download/route.js",
-  "/download/page": "app/download/page.js",
-  "/generate/page": "app/generate/page.js",
-  "/page": "app/page.js",
-  "/optimize/page": "app/optimize/page.js",
-  "/translate/page": "app/translate/page.js",
   "/api/openAI/route": "app/api/openAI/route.js",
+  "/download/page": "app/download/page.js",
+  "/optimize/page": "app/optimize/page.js",
+  "/page": "app/page.js",
+  "/generate/page": "app/generate/page.js",
+  "/translate/page": "app/translate/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/socials/page": "app/socials/page.js"
+  "/socials/page": "app/socials/page.js",
+  "/recommender/page": "app/recommender/page.js"
 }

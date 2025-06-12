@@ -63,6 +63,7 @@ const BlogPostGenerator = ({value}) => {
  
   }
   const handleDropdownChangeForProduct = (value) => {
+
     setProduct(value);
   };
   const handleDropdownChangeForModel = (value) => {

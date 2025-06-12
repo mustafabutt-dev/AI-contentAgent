@@ -2,7 +2,7 @@
 
 import { markdownFileGenertaor } from '@/utils/markdownFileGenerator';
 import { redirect } from 'next/navigation'
-import { promptGenerator } from '@/utils/promptGenerator';
+import { promptGenerator, promptGeneratorForRecommendation } from '@/utils/promptGenerator';
 import { onlinePromptGen } from '@/utils/onlinePropmtGen';
 import { GenerateFreeFlowingFormat } from '@/utils/freeFlowingFormat';
 import { GenerateOnlineFreeFlowingFormat } from '../utils/onlineFreeFlowingFormat';
@@ -19,7 +19,7 @@ import { DeepSeekService } from '@/app/utils/deepSeekService';
 import { LinkedInService } from '@/app/utils/LinkedInService';
 import { FacebooknService } from '@/app/utils/FacebookService';
 import { XService } from '@/app/utils/xService';
-import { scrapeBlogTitle } from '@/app/utils/scraper';
+import { scrapeBlogTitle, scrapArticleList } from '@/app/utils/scraper';
 
 export async function InvokeOpenAI(formData: FormData) {
 
@@ -120,4 +120,31 @@ export async function makeServerCall(formData: FormData) {
   if(platforms.find(p => p.value === 'x'))
   resp.push(await XService(results.find(p => p.value === 'x'), formData.get("url")))
   return resp
+}
+
+
+export async function recommendNewTitle(formData: FormData) {
+
+  const input = JSON.parse(formData.get("product"));
+  
+  let data = await scrapArticleList(input.BlogsURL);
+  let prompt = await promptGeneratorForRecommendation(data, input);
+  console.log("prompt returned");
+
+  try{
+    const resp  = await OpenAIService({
+      model: 'gpt-4o-mini',
+      maxTokens: 1000,
+      temperature: 0.3,
+      maxRetries: 5,
+      prompt: prompt
+    });
+    const list = resp.split('\n')                      // Split by newline
+    .map(line => line.replace(/^\d+\.\s*/, '').trim()) // Remove leading numbers and trim
+    .filter(line => line.length > 0); 
+    return { success: true, list };
+  }catch(err){
+    return { success: false, err };
+  }
+  
 }

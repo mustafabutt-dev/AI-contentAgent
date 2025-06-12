@@ -36,3 +36,25 @@ export const promptGenerator = async (formData:FormData, product)=>{
 `
     return prompt;
 }
+
+export const promptGeneratorForRecommendation = async (list, product)=>{
+
+    const prompt = `I have the following list of existing article titles focused on ${product.value} in various languages. \n
+    ${list.join('\n')} \n
+    Now, based on the features officially supported by ${product.value} (see docs: ${product.DocumentationURL} and API ref: ${product.APIReferenceURL}, please generate 5 new, unique article titles that:
+
+    Do not reuse or overlap with any of the existing titles above
+
+    Are strictly based on what ${product.value} can do (no unsupported suggestions)
+
+    Include programmatic use cases in Java, C#, Python, or C++
+
+    Highlight features.
+
+    Are engaging and optimized for a developer audience, ideally implying the inclusion of code snippets.
+
+    Please make sure every suggested topic aligns 100% with actual ${product.value} capabilities.\n
+    Do not include any introductory or explanatory text. Return only the content.
+`
+    return prompt;
+}
