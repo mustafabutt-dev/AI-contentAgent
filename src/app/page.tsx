@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link'
 import SideBar from '@/components/SideBar';
 export default function Chat() {
-  redirect('/generate'); 
+  // redirect('/generate'); 
   return (
     <div className="flex flex-row w-full items-center justify-center max-w-md  mx-auto h-screen space-x-4">
 
